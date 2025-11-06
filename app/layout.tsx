@@ -22,7 +22,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={clsx(geistSans.variable, geistMono.variable)}>
+      <body
+        suppressHydrationWarning
+        className={clsx(geistSans.variable, geistMono.variable)}
+      >
         <AppProviders>{children}</AppProviders>
       </body>
     </html>
