@@ -1,4 +1,4 @@
-import AppProviders from "@/app/providers/ReactQueryProvider"
+import AppProviders from "@/app/providers/AppProviders"
 import clsx from "classnames"
 import type { Metadata } from "next"
 import { Geist, Geist_Mono } from "next/font/google"

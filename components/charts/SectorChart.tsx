@@ -1,14 +1,18 @@
 "use client"
 
-import { Card, Col, Row, Space, Typography } from "antd"
+import { Card, Col, Grid, Row, Space, Typography } from "antd"
 import { ArcElement, Chart as ChartJS, Tooltip } from "chart.js"
 import { Doughnut } from "react-chartjs-2"
 
 const { Title, Text } = Typography
+const { useBreakpoint } = Grid
 
 ChartJS.register(ArcElement, Tooltip)
 
 export default function SectorChart() {
+  const screens = useBreakpoint()
+  const isMobile = !screens.md // md = 768px breakpoint
+
   const data = {
     labels: [
       "Sector name",
@@ -45,9 +49,18 @@ export default function SectorChart() {
         boxShadow: "none",
         border: "none",
       }}
+      styles={{
+        body: {
+          paddingInline: 0,
+        },
+      }}
     >
       {/* Chart + Title */}
-      <Row align="middle" gutter={[32, 16]}>
+      <Row
+        justify={isMobile ? "center" : "start"}
+        align="middle"
+        gutter={[32, 16]}
+      >
         <Col>
           <div style={{ width: 200, height: 200 }}>
             <Doughnut
@@ -66,7 +79,7 @@ export default function SectorChart() {
       </Row>
 
       {/* Sector List */}
-      <Row gutter={[16, 8]} style={{ marginTop: 20 }}>
+      <Row gutter={[32, 8]} style={{ marginTop: 20 }}>
         {data.labels.map((label, i) => (
           <Col xs={12} key={i}>
             <Space

@@ -28,7 +28,7 @@ export default function StatsCard({
   }
   return (
     <Card style={cardStyle}>
-      <div className="flex justify-between items-center mb-4">
+      <div className="flex justify-between items-center flex-wrap mb-4">
         <Title level={3} style={{ color: "#FFF" }}>
           {title}
         </Title>
