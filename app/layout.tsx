@@ -1,7 +1,4 @@
-import AppLayout from "@/components/AppLayout"
-import ReactQueryProvider from "@/providers/ReactQueryProvider"
-import { theme } from "@/theme/antdTheme"
-import { ConfigProvider } from "antd"
+import AppProviders from "@/app/providers/ReactQueryProvider"
 import clsx from "classnames"
 import type { Metadata } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
@@ -26,11 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={clsx(geistSans.variable, geistMono.variable)}>
-        <ReactQueryProvider>
-          <ConfigProvider theme={theme}>
-            <AppLayout>{children}</AppLayout>
-          </ConfigProvider>
-        </ReactQueryProvider>
+        <AppProviders>{children}</AppProviders>
       </body>
     </html>
   )
