@@ -1,24 +1,27 @@
 "use client"
 
-import egyptIcon from "@/public/egypt.webp"
+import { useCountriesData } from "@/hooks/useCountriesData"
 import { Avatar, Card, Col, Progress, Row, Space, Typography } from "antd"
 import Image from "next/image"
+import { DataStateCard } from "../common/DataStateCard"
+
 const { Text } = Typography
 
-const countries = [
-  { key: "1", name: "India", flag: egyptIcon, percent: 50 },
-  { key: "2", name: "Canada", flag: egyptIcon, percent: 30 },
-  { key: "3", name: "Russia", flag: egyptIcon, percent: 20 },
-  { key: "4", name: "United Kingdom", flag: egyptIcon, percent: 40 },
-  { key: "5", name: "Australia", flag: egyptIcon, percent: 60 },
-  { key: "6", name: "India", flag: egyptIcon, percent: 50 },
-  { key: "7", name: "Canada", flag: egyptIcon, percent: 30 },
-  { key: "8", name: "Russia", flag: egyptIcon, percent: 20 },
-  { key: "9", name: "United Kingdom", flag: egyptIcon, percent: 40 },
-  { key: "10", name: "Australia", flag: egyptIcon, percent: 60 },
-]
+interface SectorChartProps {
+  timeRange: "week" | "month" | "year"
+}
 
-export default function CountryProgressList() {
+export default function CountryProgressList({ timeRange }: SectorChartProps) {
+  const {
+    data: countriesResponse,
+    isLoading,
+    isError,
+  } = useCountriesData(timeRange)
+
+  if (isLoading || isError) {
+    return <DataStateCard isLoading={isLoading} isError={isError} />
+  }
+
   return (
     <Card
       style={{
@@ -35,7 +38,7 @@ export default function CountryProgressList() {
     >
       <Space direction="vertical" style={{ width: "100%" }} size="large">
         <Row gutter={[40, 20]}>
-          {countries.map((country) => (
+          {countriesResponse?.data?.map((country) => (
             <Col span={24} md={12} key={country.key}>
               <div className="flex items-center gap-2">
                 <Avatar
@@ -54,10 +57,12 @@ export default function CountryProgressList() {
                   <div className="flex justify-between">
                     <Text style={{ color: "#FFF" }}>{country.name}</Text>
 
-                    <Text style={{ color: "#FFF" }}>{country?.percent} %</Text>
+                    <Text style={{ color: "#FFF" }}>
+                      {country?.percentage} %
+                    </Text>
                   </div>
                   <Progress
-                    percent={country?.percent}
+                    percent={country?.percentage}
                     showInfo={false}
                     strokeColor="#3969CE"
                     trailColor="#343F5A"

@@ -10,6 +10,7 @@ type TimeRange = "year" | "month" | "week"
 
 export default function Home() {
   const [sectorTimeRange, setSectorTimeRange] = useState<TimeRange>("year")
+  const [countryTimeRange, setCountryTimeRange] = useState<TimeRange>("year")
 
   return (
     <div className="p-5 lg:p-10">
@@ -23,8 +24,11 @@ export default function Home() {
           </StatsCard>
         </Col>
         <Col span={24} lg={12}>
-          <StatsCard title="Top Targeted Countries">
-            <CountryProgressList />
+          <StatsCard
+            title="Top Targeted Countries"
+            onTimeChange={(val) => setCountryTimeRange(val as TimeRange)}
+          >
+            <CountryProgressList timeRange={countryTimeRange} />
           </StatsCard>
         </Col>
       </Row>

@@ -1,9 +1,10 @@
 "use client"
 
 import { useSectorData } from "@/hooks/useSectorData"
-import { Card, Col, Grid, Row, Space, Spin, Typography } from "antd"
+import { Card, Col, Grid, Row, Space, Typography } from "antd"
 import { ArcElement, Chart as ChartJS, Tooltip } from "chart.js"
 import { Doughnut } from "react-chartjs-2"
+import { DataStateCard } from "../common/DataStateCard"
 
 const { Title, Text } = Typography
 const { useBreakpoint } = Grid
@@ -13,30 +14,21 @@ ChartJS.register(ArcElement, Tooltip)
 interface SectorChartProps {
   timeRange: "week" | "month" | "year"
 }
+
+const COLORS = [
+  "#2DD4BF",
+  "#38BDF8",
+  "#A78BFA",
+  "#FBBF24",
+  "#FB923C",
+  "#8B5CF6",
+]
+
 export default function SectorChart({ timeRange }: SectorChartProps) {
   const screens = useBreakpoint()
   const isMobile = !screens.md
 
   const { data: sectorResponse, isLoading, isError } = useSectorData(timeRange)
-
-  const noDataCard = {
-    background: "transparent",
-    color: "#FFF",
-    border: "none",
-    minHeight: 350,
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-  }
-
-  const COLORS = [
-    "#2DD4BF",
-    "#38BDF8",
-    "#A78BFA",
-    "#FBBF24",
-    "#FB923C",
-    "#8B5CF6",
-  ]
 
   const data = {
     labels: sectorResponse?.data.map((sector) => sector.name) || [],
@@ -53,24 +45,8 @@ export default function SectorChart({ timeRange }: SectorChartProps) {
   const total =
     sectorResponse?.data.reduce((sum, sector) => sum + sector.count, 0) || 0
 
-  // Loading state
-  if (isLoading) {
-    return (
-      <Card style={noDataCard}>
-        <Spin size="large" />
-      </Card>
-    )
-  }
-
-  // Error state
-  if (isError) {
-    return (
-      <Card style={noDataCard}>
-        <Text style={{ color: "#FFF" }}>
-          Failed to load sector data. Please try again.
-        </Text>
-      </Card>
-    )
+  if (isLoading || isError) {
+    return <DataStateCard isLoading={isLoading} isError={isError} />
   }
 
   return (

@@ -1,3 +1,8 @@
+import canadaIcon from "@/public/flags/canada.webp"
+import egyptIcon from "@/public/flags/egypt.webp"
+import indiaIcon from "@/public/flags/india.webp"
+import russiaIcon from "@/public/flags/russia.webp"
+import ukIcon from "@/public/flags/uk.webp"
 import { CountryData, IntelUpdate, SectorData } from "@/types/intel"
 
 export const mockIntelUpdates: IntelUpdate[] = [
@@ -75,8 +80,14 @@ export const mockSectorData: SectorData[] = [
 ]
 
 export const mockCountryData: CountryData[] = [
-  { name: "Canada", code: "CA", percentage: 30, count: 36, flag: "🇨🇦" },
-  { name: "Russia", code: "RU", percentage: 20, count: 24, flag: "🇷🇺" },
-  { name: "United Kingdom", code: "GB", percentage: 40, count: 48, flag: "🇬🇧" },
-  { name: "China", code: "CN", percentage: 30, count: 36, flag: "🇨🇳" },
+  { key: "1", name: "Egypt", flag: egyptIcon, percentage: 50 },
+  { key: "2", name: "Egypt", flag: egyptIcon, percentage: 30 },
+  { key: "3", name: "Canada", flag: canadaIcon, percentage: 20 },
+  { key: "4", name: "Canada", flag: canadaIcon, percentage: 40 },
+  { key: "5", name: "India", flag: indiaIcon, percentage: 60 },
+  { key: "6", name: "India", flag: indiaIcon, percentage: 50 },
+  { key: "7", name: "Russia", flag: russiaIcon, percentage: 30 },
+  { key: "8", name: "Russia", flag: russiaIcon, percentage: 20 },
+  { key: "9", name: "United Kingdom", flag: ukIcon, percentage: 40 },
+  { key: "10", name: "United Kingdom", flag: ukIcon, percentage: 60 },
 ]

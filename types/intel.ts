@@ -1,3 +1,5 @@
+import { StaticImageData } from "next/image"
+
 export interface IntelUpdate {
   id: string
   title: string
@@ -20,11 +22,10 @@ export interface SectorData {
 }
 
 export interface CountryData {
+  key: string
   name: string
-  code: string
+  flag: StaticImageData
   percentage: number
-  count: number
-  flag: string
 }
 
 // types/filters.ts
