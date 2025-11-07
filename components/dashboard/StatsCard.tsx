@@ -8,7 +8,7 @@ const { Title } = Typography
 interface StatsCardProps {
   title: string
   children?: ReactNode
-  timeOptions?: string[]
+  timeOptions?: { label: string; value: string }[]
   defaultTime?: string
   onTimeChange?: (value: string) => void
 }
@@ -16,7 +16,11 @@ interface StatsCardProps {
 export default function StatsCard({
   title,
   children,
-  timeOptions = ["This year", "This month", "This week"],
+  timeOptions = [
+    { label: "This Year", value: "year" },
+    { label: "This Month", value: "month" },
+    { label: "This Week", value: "week" },
+  ],
   defaultTime = "This year",
   onTimeChange,
 }: StatsCardProps) {
@@ -37,7 +41,7 @@ export default function StatsCard({
           defaultValue={defaultTime}
           className="custom-select"
           placeholder="Select period"
-          options={timeOptions.map((item) => ({ label: item, value: item }))}
+          options={timeOptions}
           onChange={(time) => {
             onTimeChange?.(time)
           }}

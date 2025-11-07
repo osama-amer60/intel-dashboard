@@ -1,6 +1,7 @@
 "use client"
 
-import { Card, Col, Grid, Row, Space, Typography } from "antd"
+import { useSectorData } from "@/hooks/useSectorData"
+import { Card, Col, Grid, Row, Space, Spin, Typography } from "antd"
 import { ArcElement, Chart as ChartJS, Tooltip } from "chart.js"
 import { Doughnut } from "react-chartjs-2"
 
@@ -9,37 +10,68 @@ const { useBreakpoint } = Grid
 
 ChartJS.register(ArcElement, Tooltip)
 
-export default function SectorChart() {
+interface SectorChartProps {
+  timeRange: "week" | "month" | "year"
+}
+export default function SectorChart({ timeRange }: SectorChartProps) {
   const screens = useBreakpoint()
-  const isMobile = !screens.md // md = 768px breakpoint
+  const isMobile = !screens.md
+
+  const { data: sectorResponse, isLoading, isError } = useSectorData(timeRange)
+
+  const noDataCard = {
+    background: "transparent",
+    color: "#FFF",
+    border: "none",
+    minHeight: 350,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  }
+
+  const COLORS = [
+    "#2DD4BF",
+    "#38BDF8",
+    "#A78BFA",
+    "#FBBF24",
+    "#FB923C",
+    "#8B5CF6",
+  ]
 
   const data = {
-    labels: [
-      "Sector name",
-      "Sector name",
-      "Sector name",
-      "Sector name",
-      "Sector name",
-      "Sector name",
-    ],
+    labels: sectorResponse?.data.map((sector) => sector.name) || [],
     datasets: [
       {
-        data: [35, 24, 20, 10, 8, 4],
-        backgroundColor: [
-          "#2DD4BF", // teal
-          "#38BDF8", // blue
-          "#A78BFA", // purple
-          "#FBBF24", // yellow
-          "#FB923C", // orange
-          "#8B5CF6", // violet
-        ],
+        data: sectorResponse?.data.map((sector) => sector.percentage) || [],
+        backgroundColor: COLORS,
         borderWidth: 0,
         cutout: "60%",
       },
     ],
   }
 
-  const total = data.datasets[0].data.reduce((a, b) => a + b, 0)
+  const total =
+    sectorResponse?.data.reduce((sum, sector) => sum + sector.count, 0) || 0
+
+  // Loading state
+  if (isLoading) {
+    return (
+      <Card style={noDataCard}>
+        <Spin size="large" />
+      </Card>
+    )
+  }
+
+  // Error state
+  if (isError) {
+    return (
+      <Card style={noDataCard}>
+        <Text style={{ color: "#FFF" }}>
+          Failed to load sector data. Please try again.
+        </Text>
+      </Card>
+    )
+  }
 
   return (
     <Card
@@ -55,7 +87,6 @@ export default function SectorChart() {
         },
       }}
     >
-      {/* Chart + Title */}
       <Row
         justify={isMobile ? "center" : "start"}
         align="middle"
@@ -65,7 +96,23 @@ export default function SectorChart() {
           <div style={{ width: 200, height: 200 }}>
             <Doughnut
               data={data}
-              options={{ plugins: { legend: { display: false } } }}
+              options={{
+                plugins: {
+                  legend: { display: false },
+                  tooltip: {
+                    callbacks: {
+                      label: function (context) {
+                        const label = context.label || ""
+                        const value = context.parsed || 0
+                        const sector = sectorResponse?.data[context.dataIndex]
+                        return `${label}: ${value}% (${
+                          sector?.count || 0
+                        } threats)`
+                      },
+                    },
+                  },
+                },
+              }}
             />
           </div>
         </Col>
@@ -78,10 +125,9 @@ export default function SectorChart() {
         </Col>
       </Row>
 
-      {/* Sector List */}
       <Row gutter={[32, 8]} style={{ marginTop: 20 }}>
-        {data.labels.map((label, i) => (
-          <Col xs={12} key={i}>
+        {sectorResponse?.data.map((sector, i) => (
+          <Col xs={24} sm={12} key={sector.name}>
             <Space
               align="center"
               style={{ justifyContent: "space-between", width: "100%" }}
@@ -93,13 +139,13 @@ export default function SectorChart() {
                     width: 4,
                     height: 10,
                     borderRadius: 4,
-                    backgroundColor: data.datasets[0].backgroundColor[i],
+                    backgroundColor: COLORS[i % COLORS.length],
                   }}
                 />
-                <Text style={{ color: "#ccc" }}>{label}</Text>
+                <Text style={{ color: "#ccc" }}>{sector.name}</Text>
               </Space>
               <Text strong style={{ color: "#FFF" }}>
-                {data.datasets[0].data[i]}%
+                {sector.percentage}%
               </Text>
             </Space>
           </Col>

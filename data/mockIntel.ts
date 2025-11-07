@@ -1,5 +1,3 @@
-// data/mockIntel.ts
-
 import { CountryData, IntelUpdate, SectorData } from "@/types/intel"
 
 export const mockIntelUpdates: IntelUpdate[] = [
@@ -73,6 +71,7 @@ export const mockSectorData: SectorData[] = [
   { name: "Manufacturing", percentage: 18, count: 22 },
   { name: "Retail", percentage: 12, count: 14 },
   { name: "Government", percentage: 10, count: 12 },
+  { name: "Technology", percentage: 22, count: 26 },
 ]
 
 export const mockCountryData: CountryData[] = [
