@@ -2,6 +2,7 @@
 
 import CountryProgressList from "@/components/charts/CountryProgressList"
 import SectorChart from "@/components/charts/SectorChart"
+import { IntelList } from "@/components/dashboard/IntelList"
 import StatsCard from "@/components/dashboard/StatsCard"
 import { Col, Row } from "antd"
 import { useState } from "react"
@@ -30,6 +31,14 @@ export default function Home() {
           >
             <CountryProgressList timeRange={countryTimeRange} />
           </StatsCard>
+        </Col>
+      </Row>
+      <Row gutter={[16, 16]} className="mt-4">
+        <Col span={24} lg={4}>
+          hi
+        </Col>
+        <Col span={24} lg={20}>
+          <IntelList />
         </Col>
       </Row>
     </div>

@@ -18,7 +18,6 @@ export const mockIntelUpdates: IntelUpdate[] = [
     targetCountries: ["Indonesia"],
     tags: ["Data Breach", "Government", "Indonesia", "Database Leak"],
     source: "SOCRadar",
-    thumbnail: "/images/database-leak.jpg",
   },
   {
     id: "2",

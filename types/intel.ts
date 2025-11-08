@@ -31,15 +31,10 @@ export interface CountryData {
 // types/filters.ts
 
 export interface FilterState {
-  search: string
-  tags: string[]
-  industries: string[]
-  Regions: string[]
-  categories: string[]
-  sectors: string[]
-  group: string[]
-  dateRange: {
-    from: Date | null
-    to: Date | null
-  }
+  search?: string
+  tags?: string[]
+  regions?: string[]
+  sectors?: string[]
+  dateFrom?: string
+  dateTo?: string
 }
