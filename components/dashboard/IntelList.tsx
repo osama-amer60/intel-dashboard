@@ -18,8 +18,17 @@ import {
 import Image from "next/image"
 import { DataStateCard } from "../common/DataStateCard"
 
-const { Text, Title } = Typography
+const { Text, Title, Paragraph } = Typography
 const { useBreakpoint } = Grid
+
+interface Props {
+  intelFilters: {
+    search: string
+    tags: string[]
+    regions: string[]
+    sectors: string[]
+  }
+}
 
 const targetBlocksStyle = {
   whiteSpace: "nowrap",
@@ -35,19 +44,22 @@ const borderBlockStyle = {
   paddingInlineStart: 16,
 }
 
-export const IntelList = () => {
+export const IntelList = ({ intelFilters }: Props) => {
   const screens = useBreakpoint()
   const isMobile = !screens.md
 
-  const { data, isLoading, isError } = useIntelUpdates({
-    search: "",
-    tags: [],
-    regions: [],
-    sectors: [],
-  })
+  const { data, isLoading, isError } = useIntelUpdates(intelFilters)
 
   if (isLoading || isError) {
     return <DataStateCard isLoading={isLoading} isError={isError} />
+  }
+
+  if (!data || data.data.length === 0) {
+    return (
+      <div className="min-h-72 text-white flex items-center justify-center text-lg">
+        No intel updates found.
+      </div>
+    )
   }
 
   const renderIntelCard = (item: any) => (
@@ -57,8 +69,14 @@ export const IntelList = () => {
         backgroundColor: "#0a1733",
         border: "none",
       }}
+      styles={{
+        body: {
+          paddingTop: 0,
+          paddingInline: 0,
+        },
+      }}
     >
-      <Row gutter={[16, 16]} align="middle">
+      <Row gutter={[16, 16]} align="top">
         <Col xs={24} md={6}>
           <Image
             src={item.thumbnail || defaultImg}
@@ -93,7 +111,7 @@ export const IntelList = () => {
               </span>
             </Title>
 
-            <Typography.Paragraph
+            <Paragraph
               ellipsis={{ rows: 2 }}
               style={{
                 color: "#a0aec0",
@@ -101,7 +119,7 @@ export const IntelList = () => {
               }}
             >
               {item.description}
-            </Typography.Paragraph>
+            </Paragraph>
 
             <Divider
               size="small"
@@ -116,18 +134,18 @@ export const IntelList = () => {
                 <Text strong style={{ color: "#a0aec0" }}>
                   Target Sectors:
                 </Text>
-                <Typography.Paragraph style={targetBlocksStyle}>
+                <Paragraph style={targetBlocksStyle}>
                   {item.targetSectors?.join(", ") || "—"}
-                </Typography.Paragraph>
+                </Paragraph>
               </Col>
 
               <Col xs={24} sm={12} lg={8} style={borderBlockStyle}>
                 <Text strong style={{ color: "#a0aec0" }}>
                   Target Location:
                 </Text>
-                <Typography.Paragraph style={targetBlocksStyle}>
+                <Paragraph style={targetBlocksStyle}>
                   {item.targetCountries?.join(", ") || "—"}{" "}
-                </Typography.Paragraph>
+                </Paragraph>
               </Col>
 
               <Col xs={24} sm={12} lg={8} style={borderBlockStyle}>
@@ -177,7 +195,7 @@ export const IntelList = () => {
   )
 
   return (
-    <Space direction="vertical" style={{ width: "100%", marginTop: 24 }}>
+    <Space direction="vertical" style={{ width: "100%" }}>
       {data?.data.map((item) => renderIntelCard(item))}
     </Space>
   )

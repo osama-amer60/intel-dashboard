@@ -17,3 +17,8 @@
   background-color: #1d2d4a !important;
   color: #fff !important;
 }
+
+.custom-search-input input::placeholder,
+.custom-search-input .ant-input-suffix svg {
+  color: #a0aec0 !important;
+}
