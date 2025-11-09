@@ -39,7 +39,7 @@ export default function StatsCard({
 
         <Select
           defaultValue={defaultTime}
-          className="custom-select"
+          className="custom-card-select"
           placeholder="Select period"
           options={timeOptions}
           onChange={(time) => {

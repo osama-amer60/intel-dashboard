@@ -45,7 +45,7 @@ export default function Home() {
           </StatsCard>
         </Col>
       </Row>
-      <Row gutter={[16, 16]} style={{ marginTop: 50 }}>
+      <Row gutter={[16, 16]} style={{ marginTop: 50, minHeight: 700 }}>
         <Col span={24} lg={6}>
           <IntelFilter setIntelFilters={setIntelFilters} />
         </Col>

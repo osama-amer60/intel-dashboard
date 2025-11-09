@@ -51,12 +51,14 @@ export const IntelList = ({ intelFilters }: Props) => {
   const { data, isLoading, isError } = useIntelUpdates(intelFilters)
 
   if (isLoading || isError) {
-    return <DataStateCard isLoading={isLoading} isError={isError} />
+    return (
+      <DataStateCard isLoading={isLoading} isError={isError} minHeight={650} />
+    )
   }
 
   if (!data || data.data.length === 0) {
     return (
-      <div className="min-h-72 text-white flex items-center justify-center text-lg">
+      <div className="min-h-96 lg:mb-80 text-white flex items-center justify-center text-lg">
         No intel updates found.
       </div>
     )

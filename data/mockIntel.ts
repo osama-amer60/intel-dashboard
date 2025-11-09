@@ -12,7 +12,7 @@ export const mockIntelUpdates: IntelUpdate[] = [
       "The Alleged Database of Kementerian Perhubungan Republik Indonesia is Leaked",
     description:
       "In a hacker forum monitored by SOCRadar, a new alleged database leak is disclosed. A database allegedly belonging to the Ministry of Transportation of the Republic of Indonesia has been leaked online.",
-    date: "2024-05-20",
+    date: "2025-11-12",
     type: "leak",
     targetSectors: ["Government", "Transportation"],
     targetCountries: ["Indonesia"],
@@ -24,7 +24,7 @@ export const mockIntelUpdates: IntelUpdate[] = [
     title: "Critical Zero-Day Vulnerability in Enterprise VPN Solutions",
     description:
       "Security researchers discovered a critical authentication bypass vulnerability affecting multiple enterprise VPN solutions. Immediate patching recommended.",
-    date: "2024-05-19",
+    date: "2025-11-11",
     type: "vulnerability",
     targetSectors: ["Technology", "Finance", "Healthcare"],
     targetCountries: ["Global"],
@@ -36,7 +36,7 @@ export const mockIntelUpdates: IntelUpdate[] = [
     title: "Ransomware Campaign Targeting Healthcare Sector",
     description:
       "A new ransomware variant has been observed specifically targeting healthcare organizations across Europe and North America.",
-    date: "2024-05-18",
+    date: "2025-11-10",
     type: "malware",
     targetSectors: ["Healthcare", "Medical Services"],
     targetCountries: ["United States", "United Kingdom", "Germany", "Canada"],
@@ -48,7 +48,7 @@ export const mockIntelUpdates: IntelUpdate[] = [
     title: "Phishing Campaign Impersonating Major Banks",
     description:
       "Sophisticated phishing campaign detected targeting customers of major financial institutions with fake login pages.",
-    date: "2024-05-17",
+    date: "2025-11-09",
     type: "phishing",
     targetSectors: ["Finance", "Banking"],
     targetCountries: ["Russia", "China", "India"],
@@ -60,7 +60,7 @@ export const mockIntelUpdates: IntelUpdate[] = [
     title: "Supply Chain Attack on Software Development Tools",
     description:
       "Malicious code discovered in popular npm packages affecting thousands of software development projects worldwide.",
-    date: "2024-05-16",
+    date: "2025-11-08",
     type: "breach",
     targetSectors: ["Technology", "Software Development"],
     targetCountries: ["Global"],
@@ -89,4 +89,47 @@ export const mockCountryData: CountryData[] = [
   { key: "8", name: "Russia", flag: russiaIcon, percentage: 20 },
   { key: "9", name: "United Kingdom", flag: ukIcon, percentage: 40 },
   { key: "10", name: "United Kingdom", flag: ukIcon, percentage: 60 },
+]
+
+export const regionsData = [
+  {
+    group: "Global",
+    items: ["Global"],
+  },
+  {
+    group: "Middle East",
+    items: ["Egypt", "Jordan", "UAE", "Saudi Arabia"],
+  },
+  {
+    group: "Asia",
+    items: ["Indonesia", "China", "India"],
+  },
+  {
+    group: "Europe",
+    items: ["United Kingdom", "Germany", "France"],
+  },
+  {
+    group: "Americas",
+    items: ["United States", "Canada", "Brazil"],
+  },
+]
+
+export const tagsList = [
+  "Supply Chain",
+  "NPM",
+  "Malicious Code",
+  "Phishing",
+  "Financial Fraud",
+  "Social Engineering",
+  "Ransomware",
+  "Healthcare",
+  "Malware",
+  "Zero-Day",
+  "VPN",
+  "Authentication Bypass",
+  "CVE-2024-XXXX",
+  "Data Breach",
+  "Government",
+  "Indonesia",
+  "Database Leak",
 ]

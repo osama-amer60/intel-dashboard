@@ -1,24 +1,41 @@
 @import "tailwindcss";
 
-.custom-select .ant-select-selector {
+.custom-card-select .ant-select-selector {
   background-color: #3d4c67 !important;
-  border-color: #3d4c67 !important;
-  color: #fff !important;
-}
-.custom-select .ant-select-selector .ant-select-selection-item {
   color: #fff !important;
 }
 
-.custom-select .ant-select-arrow {
-  color: #fff !important;
+/* Global scrollbar styles including Ant Design Select dropdown */
+*::-webkit-scrollbar,
+.ant-select-dropdown .rc-virtual-list-holder::-webkit-scrollbar {
+  width: 8px !important;
+  height: 8px !important;
 }
 
-.custom-select .ant-select-dropdown {
-  background-color: #1d2d4a !important;
-  color: #fff !important;
+*::-webkit-scrollbar-track,
+.ant-select-dropdown .rc-virtual-list-holder::-webkit-scrollbar-track {
+  background: #1e2d47 !important;
+  border-radius: 4px !important;
 }
 
-.custom-search-input input::placeholder,
-.custom-search-input .ant-input-suffix svg {
-  color: #a0aec0 !important;
+*::-webkit-scrollbar-thumb,
+.ant-select-dropdown .rc-virtual-list-holder::-webkit-scrollbar-thumb,
+.rc-virtual-list-scrollbar-thumb {
+  background: #30456b !important;
+  border-radius: 4px !important;
+}
+
+*::-webkit-scrollbar-thumb:hover,
+.ant-select-dropdown .rc-virtual-list-holder::-webkit-scrollbar-thumb:hover,
+.rc-virtual-list-scrollbar-thumb:hover {
+  background: #2b3e63 !important;
+}
+
+* {
+  scrollbar-width: thin !important;
+  scrollbar-color: #30456b #1e2d47 !important;
+}
+
+.rc-virtual-list-scrollbar {
+  width: 4px !important;
 }
