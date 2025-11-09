@@ -1,14 +1,18 @@
 "use client"
 
-import { Breadcrumb, Layout } from "antd"
+import { Breadcrumb, Grid, Layout } from "antd"
 import { ReactNode } from "react"
+const { useBreakpoint } = Grid
 
 const { Header, Content } = Layout
 
 export default function AppLayout({ children }: { children: ReactNode }) {
+  const screens = useBreakpoint()
+  const isMobile = !screens.lg
+
   const headerStyle: React.CSSProperties = {
     paddingBlock: 30,
-    paddingInline: 48,
+    paddingInline: isMobile ? 28 : 48,
     backgroundColor: "#051B45",
     color: "#FFFFFF",
     height: 90,

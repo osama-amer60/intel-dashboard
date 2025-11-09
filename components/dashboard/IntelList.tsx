@@ -17,7 +17,7 @@ import {
   Typography,
 } from "antd"
 import Image from "next/image"
-import { useCallback, useState } from "react" // أضف useCallback
+import { useCallback, useState } from "react"
 import { DataStateCard } from "../common/DataStateCard"
 
 const { Text, Title, Paragraph } = Typography
@@ -100,7 +100,7 @@ export const IntelList = ({ intelFilters }: Props) => {
             alt={item.title}
             style={{
               width: "100%",
-              aspectRatio: "4 / 3.5",
+              aspectRatio: isMobile ? "7 / 4" : "4 / 3.5",
               objectFit: "cover",
               borderRadius: 12,
               overflow: "hidden",
@@ -138,16 +138,23 @@ export const IntelList = ({ intelFilters }: Props) => {
               {item.description}
             </Paragraph>
 
-            <Divider
-              size="small"
-              style={{
-                backgroundColor: "rgb(255, 255, 255,0.2)",
-                marginTop: 1,
-              }}
-            />
+            {!isMobile && (
+              <Divider
+                size="small"
+                style={{
+                  backgroundColor: "rgb(255, 255, 255,0.2)",
+                  marginTop: 1,
+                }}
+              />
+            )}
 
             <Row gutter={[8, 8]}>
-              <Col xs={24} sm={12} lg={8}>
+              <Col
+                xs={24}
+                sm={12}
+                md={8}
+                style={isMobile ? borderBlockStyle : undefined}
+              >
                 <Text strong style={{ color: "#a0aec0" }}>
                   Target Sectors:
                 </Text>
@@ -156,7 +163,7 @@ export const IntelList = ({ intelFilters }: Props) => {
                 </Paragraph>
               </Col>
 
-              <Col xs={24} sm={12} lg={8} style={borderBlockStyle}>
+              <Col xs={24} sm={12} md={8} style={borderBlockStyle}>
                 <Text strong style={{ color: "#a0aec0" }}>
                   Target Location:
                 </Text>
@@ -165,7 +172,7 @@ export const IntelList = ({ intelFilters }: Props) => {
                 </Paragraph>
               </Col>
 
-              <Col xs={24} sm={12} lg={8} style={borderBlockStyle}>
+              <Col xs={24} sm={12} md={8} style={borderBlockStyle}>
                 <Space direction="vertical" size={0}>
                   <Text strong style={{ color: "#a0aec0" }}>
                     Threat Actors:

@@ -143,6 +143,7 @@ export default function IntelFilter({ setIntelFilters }: Props) {
 
           <RangePicker
             size="large"
+            style={{ width: "100%" }}
             onChange={(e) => {
               handleDateChange(e)
             }}

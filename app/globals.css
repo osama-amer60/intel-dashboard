@@ -39,3 +39,13 @@
 .rc-virtual-list-scrollbar {
   width: 4px !important;
 }
+
+/* Add this to your global CSS file */
+@media (max-width: 650px) {
+  .ant-picker-dropdown {
+    width: 300px !important;
+  }
+  .ant-picker-panels {
+    flex-direction: column !important;
+  }
+}
