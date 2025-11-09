@@ -47,6 +47,15 @@ export const theme: ThemeConfig = {
       controlItemBgHover: "#2b3e63",
       colorTextQuaternary: "#a0aec0",
     },
+    Pagination: {
+      colorBgContainer: "#1e2d47",
+      colorBorder: "#1e2d47",
+      colorText: "#a0aec0",
+      colorTextDisabled: "#4a5568",
+      colorBgTextHover: "#2b3e63",
+      colorBgTextActive: "#30456B",
+      borderRadius: 50,
+    },
   },
   token: {
     colorPrimary: "#1890ff",

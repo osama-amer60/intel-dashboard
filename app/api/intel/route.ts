@@ -11,6 +11,11 @@ export async function GET(request: NextRequest) {
   const dateFrom = searchParams.get("dateFrom")
   const dateTo = searchParams.get("dateTo")
 
+  // Pagination parameters
+  const page = parseInt(searchParams.get("page") || "1")
+  const limit = parseInt(searchParams.get("limit") || "5")
+  const skip = (page - 1) * limit
+
   let filteredData = [...mockIntelUpdates]
 
   if (search) {
@@ -62,12 +67,31 @@ export async function GET(request: NextRequest) {
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
   )
 
+  // Apply pagination
+  const paginatedData = filteredData.slice(skip, skip + limit)
+
+  // Calculate pagination metadata
+  const totalItems = filteredData.length
+  const totalPages = Math.ceil(totalItems / limit)
+  const hasNextPage = page < totalPages
+  const hasPrevPage = page > 1
+
   // Simulate API delay
   await new Promise((resolve) => setTimeout(resolve, 300))
 
   return NextResponse.json({
-    data: filteredData,
-    total: filteredData.length,
+    data: paginatedData,
+    total: totalItems,
+    pagination: {
+      currentPage: page,
+      totalPages,
+      pageSize: limit,
+      totalItems,
+      hasNextPage,
+      hasPrevPage,
+      nextPage: hasNextPage ? page + 1 : null,
+      prevPage: hasPrevPage ? page - 1 : null,
+    },
     timestamp: new Date().toISOString(),
   })
 }

@@ -10,12 +10,14 @@ import {
   Col,
   Divider,
   Grid,
+  Pagination,
   Row,
   Space,
   Tag,
   Typography,
 } from "antd"
 import Image from "next/image"
+import { useCallback, useState } from "react" // أضف useCallback
 import { DataStateCard } from "../common/DataStateCard"
 
 const { Text, Title, Paragraph } = Typography
@@ -45,10 +47,23 @@ const borderBlockStyle = {
 }
 
 export const IntelList = ({ intelFilters }: Props) => {
+  const [pagination, setPagination] = useState({ page: 1, limit: 5 })
   const screens = useBreakpoint()
   const isMobile = !screens.md
 
-  const { data, isLoading, isError } = useIntelUpdates(intelFilters)
+  const resetPagination = useCallback(() => {
+    setPagination((prev) => ({ ...prev, page: 1 }))
+  }, [])
+
+  const { data, isLoading, isError } = useIntelUpdates(
+    intelFilters,
+    pagination,
+    resetPagination
+  )
+
+  const handlePageChange = (newPage: number) => {
+    setPagination((prev) => ({ ...prev, page: newPage }))
+  }
 
   if (isLoading || isError) {
     return (
@@ -199,6 +214,16 @@ export const IntelList = ({ intelFilters }: Props) => {
   return (
     <Space direction="vertical" style={{ width: "100%" }}>
       {data?.data.map((item) => renderIntelCard(item))}
+
+      {data?.pagination.totalItems > 5 && (
+        <Pagination
+          align="center"
+          current={data?.pagination.currentPage || 1}
+          pageSize={pagination.limit}
+          total={data?.pagination.totalItems || 0}
+          onChange={handlePageChange}
+        />
+      )}
     </Space>
   )
 }
