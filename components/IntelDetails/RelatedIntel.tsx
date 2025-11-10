@@ -1,5 +1,6 @@
 "use client"
 
+import { mockIntelUpdates } from "@/data/mockIntel"
 import { Card, Col, Image, Row, Space, Typography } from "antd"
 import { useRouter } from "next/navigation"
 const { Text } = Typography
@@ -11,76 +12,8 @@ export const RelatedIntel = () => {
     router.push(`/intl-details/${id}`)
   }
 
-  const relatedIntel = [
-    {
-      id: "2",
-      title: "Critical Zero-Day Vulnerability in Enterprise VPN Solutions",
-      description:
-        "Security researchers discovered a critical authentication bypass vulnerability affecting multiple enterprise VPN solutions. Immediate patching recommended.",
-      shortDescription:
-        "Critical zero-day vulnerability in enterprise VPN solutions",
-      companyName: "Multiple VPN Vendors",
-      domains: [
-        "https://vpncorp.com",
-        "https://securevpn.net",
-        "https://enterprisevpn.io",
-      ],
-      date: "2025-11-11",
-      type: "vulnerability",
-      targetSectors: ["Technology", "Finance", "Healthcare"],
-      targetCountries: ["Global"],
-      tags: ["Zero-Day", "VPN", "Authentication Bypass", "CVE-2024-XXXX"],
-      source: "https://intel-dashboard-zeta.vercel.app/",
-      thumbnail:
-        "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=400&h=300&fit=crop",
-      threatActor: "CERT",
-    },
-    {
-      id: "3",
-      title: "Ransomware Campaign Targeting Healthcare Sector",
-      description:
-        "A new ransomware variant has been observed specifically targeting healthcare organizations across Europe and North America.",
-      shortDescription:
-        "Ransomware campaign targeting healthcare organizations",
-      companyName: "Multiple Healthcare Providers",
-      domains: [
-        "https://medcare.org",
-        "https://healthsystem.eu",
-        "https://hospitalgroup.com",
-      ],
-      date: "2025-11-10",
-      type: "malware",
-      targetSectors: ["Healthcare", "Medical Services"],
-      targetCountries: ["United States", "United Kingdom", "Germany", "Canada"],
-      tags: ["Ransomware", "Healthcare", "Malware"],
-      source: "https://intel-dashboard-zeta.vercel.app/",
-      thumbnail:
-        "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=400&h=300&fit=crop",
-      threatActor: "Threat Intelligence",
-    },
-    {
-      id: "4",
-      title: "Phishing Campaign Impersonating Major Banks",
-      description:
-        "Sophisticated phishing campaign detected targeting customers of major financial institutions with fake login pages.",
-      shortDescription: "Phishing campaign targeting bank customers",
-      companyName: "Multiple Financial Institutions",
-      domains: [
-        "https://globalbank.com",
-        "https://securefinance.ru",
-        "https://bankofasia.cn",
-      ],
-      date: "2025-11-09",
-      type: "phishing",
-      targetSectors: ["Finance", "Banking"],
-      targetCountries: ["Russia", "China", "India"],
-      tags: ["Phishing", "Financial Fraud", "Social Engineering"],
-      source: "https://intel-dashboard-zeta.vercel.app/",
-      thumbnail:
-        "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=400&h=300&fit=crop",
-      threatActor: "Anti-Phishing Working Group",
-    },
-  ]
+  const relatedIntel = mockIntelUpdates.slice(0, 3)
+
   return (
     <Card
       title={

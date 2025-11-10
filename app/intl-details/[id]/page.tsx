@@ -21,19 +21,22 @@ const IntelDetails = () => {
   }
 
   return (
-    <div className="p-5 lg:p-10 mb-72">
+    <div className="p-5 lg:p-10 mb-20">
       <Row gutter={[24, 24]}>
-        <IntelImage src={data?.data?.thumbnail} />
-        <IntelInfo
-          companyName={data?.data?.companyName}
-          domains={data?.data?.domains}
-          targetSectors={data?.data?.targetSectors}
-          targetCountries={data?.data?.targetCountries}
-          threatActor={data?.data?.threatActor}
-          source={data?.data?.source}
-          tags={data?.data?.tags}
-        />
-
+        <Col xs={24} lg={10}>
+          <IntelImage src={data?.data?.thumbnail} />
+        </Col>
+        <Col xs={24} lg={14}>
+          <IntelInfo
+            companyName={data?.data?.companyName}
+            domains={data?.data?.domains}
+            targetSectors={data?.data?.targetSectors}
+            targetCountries={data?.data?.targetCountries}
+            threatActor={data?.data?.threatActor}
+            source={data?.data?.source}
+            tags={data?.data?.tags}
+          />
+        </Col>
         <Col xs={24} lg={16}>
           <Space direction="vertical">
             <Space>
