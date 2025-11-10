@@ -33,7 +33,7 @@ const IntelInfo = ({
           >
             Company name
           </Text>
-          <Text style={{ color: "#fff" }}>{companyName || "—"}</Text>
+          <Text>{companyName || "—"}</Text>
         </Col>
 
         <Col xs={24} lg={12}>
@@ -63,9 +63,7 @@ const IntelInfo = ({
           >
             Target Sectors
           </Text>
-          <Text style={{ color: "#fff" }}>
-            {targetSectors?.join(", ") || "—"}
-          </Text>
+          <Text>{targetSectors?.join(", ") || "—"}</Text>
         </Col>
 
         <Col xs={24} lg={12}>
@@ -74,9 +72,7 @@ const IntelInfo = ({
           >
             Target Location
           </Text>
-          <Text style={{ color: "#fff" }}>
-            {targetCountries?.join(", ") || "—"}
-          </Text>
+          <Text>{targetCountries?.join(", ") || "—"}</Text>
         </Col>
 
         <Col xs={24} lg={12}>
@@ -85,7 +81,7 @@ const IntelInfo = ({
           >
             Threat Actors
           </Text>
-          <Text style={{ color: "#fff" }}>{threatActor || "—"}</Text>
+          <Text>{threatActor || "—"}</Text>
         </Col>
 
         <Col xs={24}>

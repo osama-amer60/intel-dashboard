@@ -56,6 +56,9 @@ export const theme: ThemeConfig = {
       colorBgTextActive: "#30456B",
       borderRadius: 50,
     },
+    Typography: {
+      colorText: "#FFF",
+    },
   },
   token: {
     colorPrimary: "#1890ff",

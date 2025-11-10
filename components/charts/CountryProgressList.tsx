@@ -55,11 +55,9 @@ export default function CountryProgressList({ timeRange }: SectorChartProps) {
 
                 <div className="flex-1">
                   <div className="flex justify-between">
-                    <Text style={{ color: "#FFF" }}>{country.name}</Text>
+                    <Text>{country.name}</Text>
 
-                    <Text style={{ color: "#FFF" }}>
-                      {country?.percentage} %
-                    </Text>
+                    <Text>{country?.percentage} %</Text>
                   </div>
                   <Progress
                     percent={country?.percentage}

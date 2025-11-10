@@ -116,7 +116,7 @@ export const IntelList = ({ intelFilters }: Props) => {
           <Col xs={24} md={18}>
             <Space direction="vertical" style={{ width: "100%" }}>
               <Text style={{ color: "#a0aec0" }}>
-                {formatDate(item.date)} • Type
+                {formatDate(item.date)} • {item.type}
               </Text>
 
               <Title
@@ -193,9 +193,7 @@ export const IntelList = ({ intelFilters }: Props) => {
                       >
                         {(item.threatActor?.[0] || "U").toUpperCase()}
                       </Avatar>
-                      <Text style={{ color: "#FFF" }}>
-                        {item.threatActor || "Unknown"}
-                      </Text>
+                      <Text>{item.threatActor || "Unknown"}</Text>
                     </Space>
                   </Space>
                 </Col>

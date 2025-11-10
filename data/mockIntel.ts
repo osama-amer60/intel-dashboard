@@ -11,7 +11,7 @@ export const mockIntelUpdates: IntelUpdate[] = [
     title:
       "The Alleged Database of Kementerian Perhubungan Republik Indonesia is Leaked",
     description:
-      "In a hacker forum monitored by SOCRadar, a new alleged database leak is disclosed. A database allegedly belonging to the Ministry of Transportation of the Republic of Indonesia has been leaked online.",
+      "In a hacker forum monitored by SOCRadar, a new alleged database leak is disclosed. A database allegedly belonging to the Ministry of Transportation of the Republic of Indonesia has been leaked online. In a hacker forum monitored by SOCRadar, a new alleged database leak is disclosed. A database allegedly belonging to the Ministry of Transportation of the Republic of Indonesia has been leaked online. In a hacker forum monitored by SOCRadar, a new alleged database leak is disclosed. A database allegedly belonging to the Ministry of Transportation of the Republic of Indonesia has been leaked online. In a hacker forum monitored by SOCRadar, a new alleged database leak is disclosed. A database allegedly belonging to the Ministry of Transportation of the Republic of Indonesia has been leaked online. In a hacker forum monitored by SOCRadar, a new alleged database leak is disclosed. A database allegedly belonging to the Ministry of Transportation of the Republic of Indonesia has been leaked online.",
     shortDescription:
       "Database leak from Indonesian Ministry of Transportation",
     companyName: "Kementerian Perhubungan Republik Indonesia",

@@ -42,7 +42,7 @@ export const DataStateCard = ({
   if (isError) {
     return (
       <Card style={noDataFoundCardStyle}>
-        <Text style={{ color: "#FFF" }}>{errorMessage}</Text>
+        <Text>{errorMessage}</Text>
       </Card>
     )
   }
