@@ -11,8 +11,10 @@ export interface IntelUpdate {
   tags: string[]
   source: string
   companyName?: string
-  websites?: string[]
+  shortDescription?: string
+  domains?: string[]
   thumbnail?: string
+  threatActor?: string
 }
 
 export interface SectorData {

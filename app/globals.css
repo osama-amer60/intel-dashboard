@@ -49,3 +49,7 @@
     flex-direction: column !important;
   }
 }
+
+.intl-details-image .ant-image {
+  display: block !important;
+}

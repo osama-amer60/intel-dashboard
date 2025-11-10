@@ -17,6 +17,7 @@ import {
   Typography,
 } from "antd"
 import Image from "next/image"
+import Link from "next/link"
 import { useCallback, useState } from "react"
 import { DataStateCard } from "../common/DataStateCard"
 
@@ -80,142 +81,147 @@ export const IntelList = ({ intelFilters }: Props) => {
   }
 
   const renderIntelCard = (item: any) => (
-    <Card
-      key={item.id}
-      style={{
-        backgroundColor: "#0a1733",
-        border: "none",
-      }}
-      styles={{
-        body: {
-          paddingTop: 0,
-          paddingInline: 0,
-        },
-      }}
-    >
-      <Row gutter={[16, 16]} align="top">
-        <Col xs={24} md={6}>
-          <Image
-            src={item.thumbnail || defaultImg}
-            alt={item.title}
-            style={{
-              width: "100%",
-              aspectRatio: isMobile ? "7 / 4" : "4 / 3.5",
-              objectFit: "cover",
-              borderRadius: 12,
-              overflow: "hidden",
-            }}
-          />
-        </Col>
-
-        <Col xs={24} md={18}>
-          <Space direction="vertical" style={{ width: "100%" }}>
-            <Text style={{ color: "#a0aec0" }}>
-              {formatDate(item.date)} • Type
-            </Text>
-
-            <Title
-              level={isMobile ? 5 : 4}
+    <Link href={`/intl-details/${item.id}`} className="block no-underline">
+      <Card
+        key={item.id}
+        style={{
+          backgroundColor: "#0a1733",
+          border: "none",
+        }}
+        styles={{
+          body: {
+            paddingTop: 0,
+            paddingInline: 0,
+          },
+        }}
+      >
+        <Row gutter={[16, 16]} align="top">
+          <Col xs={24} md={6}>
+            <Image
+              src={item?.thumbnail || defaultImg}
+              alt={item.title}
+              width={400}
+              height={
+                isMobile
+                  ? Math.round((400 * 4) / 7)
+                  : Math.round((400 * 3.5) / 4)
+              }
+              layout="responsive"
               style={{
-                color: "rgb(255, 255, 255,0.9)",
-                marginBottom: 0,
-                lineHeight: "1.3em",
-                overflow: "hidden",
+                borderRadius: 12,
               }}
-            >
-              <span className="text-white/90 mb-0 leading-[1.3] line-clamp-2">
-                {item.title}
-              </span>
-            </Title>
+            />
+          </Col>
 
-            <Paragraph
-              ellipsis={{ rows: 2 }}
-              style={{
-                color: "#a0aec0",
-                marginBottom: 0,
-              }}
-            >
-              {item.description}
-            </Paragraph>
+          <Col xs={24} md={18}>
+            <Space direction="vertical" style={{ width: "100%" }}>
+              <Text style={{ color: "#a0aec0" }}>
+                {formatDate(item.date)} • Type
+              </Text>
 
-            {!isMobile && (
-              <Divider
-                size="small"
+              <Title
+                level={isMobile ? 5 : 4}
                 style={{
-                  backgroundColor: "rgb(255, 255, 255,0.2)",
-                  marginTop: 1,
+                  color: "rgb(255, 255, 255,0.9)",
+                  marginBottom: 0,
+                  lineHeight: "1.3em",
+                  overflow: "hidden",
                 }}
-              />
-            )}
-
-            <Row gutter={[8, 8]}>
-              <Col
-                xs={24}
-                sm={12}
-                md={8}
-                style={isMobile ? borderBlockStyle : undefined}
               >
-                <Text strong style={{ color: "#a0aec0" }}>
-                  Target Sectors:
-                </Text>
-                <Paragraph style={targetBlocksStyle}>
-                  {item.targetSectors?.join(", ") || "—"}
-                </Paragraph>
-              </Col>
+                <span className="text-white/90 mb-0 leading-[1.3] line-clamp-2">
+                  {item.title}
+                </span>
+              </Title>
 
-              <Col xs={24} sm={12} md={8} style={borderBlockStyle}>
-                <Text strong style={{ color: "#a0aec0" }}>
-                  Target Location:
-                </Text>
-                <Paragraph style={targetBlocksStyle}>
-                  {item.targetCountries?.join(", ") || "—"}{" "}
-                </Paragraph>
-              </Col>
+              <Paragraph
+                ellipsis={{ rows: 2 }}
+                style={{
+                  color: "#a0aec0",
+                  marginBottom: 0,
+                }}
+              >
+                {item.description}
+              </Paragraph>
 
-              <Col xs={24} sm={12} md={8} style={borderBlockStyle}>
-                <Space direction="vertical" size={0}>
-                  <Text strong style={{ color: "#a0aec0" }}>
-                    Threat Actors:
-                  </Text>
-                  <Space align="center" size={8}>
-                    <Avatar
-                      size="small"
-                      style={{
-                        backgroundColor: "#1677ff",
-                        color: "white",
-                        fontSize: 12,
-                      }}
-                    >
-                      {(item.threatActor?.[0] || "U").toUpperCase()}
-                    </Avatar>
-                    <Text style={{ color: "#FFF" }}>
-                      {item.threatActor || "Unknown"}
-                    </Text>
-                  </Space>
-                </Space>
-              </Col>
-            </Row>
-
-            <Space wrap style={{ marginTop: 8 }}>
-              {item.tags.slice(0, 8).map((tag: string, index: number) => (
-                <Tag
-                  key={index}
-                  color="#3271E7"
-                  style={{ opacity: 0.85, marginInlineEnd: 1 }}
-                >
-                  {tag}
-                </Tag>
-              ))}
-              {item.tags.length > 8 && (
-                <Tag color="#3271E7" style={{ opacity: 0.85 }}>
-                  + {item.tags.length - 8}
-                </Tag>
+              {!isMobile && (
+                <Divider
+                  size="small"
+                  style={{
+                    backgroundColor: "rgb(255, 255, 255,0.2)",
+                    marginTop: 1,
+                  }}
+                />
               )}
+
+              <Row gutter={[8, 8]}>
+                <Col
+                  xs={24}
+                  sm={12}
+                  md={8}
+                  style={isMobile ? borderBlockStyle : undefined}
+                >
+                  <Text strong style={{ color: "#a0aec0" }}>
+                    Target Sectors:
+                  </Text>
+                  <Paragraph style={targetBlocksStyle}>
+                    {item.targetSectors?.join(", ") || "—"}
+                  </Paragraph>
+                </Col>
+
+                <Col xs={24} sm={12} md={8} style={borderBlockStyle}>
+                  <Text strong style={{ color: "#a0aec0" }}>
+                    Target Location:
+                  </Text>
+                  <Paragraph style={targetBlocksStyle}>
+                    {item.targetCountries?.join(", ") || "—"}{" "}
+                  </Paragraph>
+                </Col>
+
+                <Col xs={24} sm={12} md={8} style={borderBlockStyle}>
+                  <Space direction="vertical" size={0}>
+                    <Text strong style={{ color: "#a0aec0" }}>
+                      Threat Actors:
+                    </Text>
+                    <Space align="center" size={8}>
+                      <Avatar
+                        size="small"
+                        style={{
+                          backgroundColor: "#1677ff",
+                          color: "white",
+                          fontSize: 12,
+                        }}
+                      >
+                        {(item.threatActor?.[0] || "U").toUpperCase()}
+                      </Avatar>
+                      <Text style={{ color: "#FFF" }}>
+                        {item.threatActor || "Unknown"}
+                      </Text>
+                    </Space>
+                  </Space>
+                </Col>
+              </Row>
+
+              <Space wrap style={{ marginTop: 8 }}>
+                {item.tags.slice(0, 8).map((tag: string, index: number) => (
+                  <Tag
+                    key={index}
+                    color="#3271E7"
+                    style={{ opacity: 0.85, marginInlineEnd: 1 }}
+                  >
+                    {tag}
+                  </Tag>
+                ))}
+                {item.tags.length > 8 && (
+                  <Tag color="#3271E7" style={{ opacity: 0.85 }}>
+                    + {item.tags.length - 8}
+                  </Tag>
+                )}
+              </Space>
             </Space>
-          </Space>
-        </Col>
-      </Row>
-    </Card>
+          </Col>
+        </Row>
+      </Card>
+    </Link>
   )
 
   return (
