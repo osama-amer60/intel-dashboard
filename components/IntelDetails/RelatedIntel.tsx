@@ -1,18 +1,36 @@
 "use client"
 
 import { mockIntelUpdates } from "@/data/mockIntel"
+import { IntelUpdate } from "@/types/intel"
 import { Card, Col, Image, Row, Space, Typography } from "antd"
-import { useRouter } from "next/navigation"
+import { useParams, useRouter } from "next/navigation"
 const { Text } = Typography
 
 export const RelatedIntel = () => {
   const router = useRouter()
+  const { id: currentId } = useParams<{ id: string }>()
 
   const handleRelatedIntelClick = (id: number | string) => {
     router.push(`/intl-details/${id}`)
   }
 
-  const relatedIntel = mockIntelUpdates.slice(0, 3)
+  const getNextThreeItems = (
+    arr: IntelUpdate[],
+    id: number | string
+  ): IntelUpdate[] => {
+    const index = arr.findIndex((item) => item.id === id)
+    if (index === -1) return []
+    const nextItems = arr.slice(index + 1, index + 4)
+
+    if (nextItems.length < 3) {
+      const remaining = 3 - nextItems.length
+      return [...nextItems, ...arr.slice(0, remaining)]
+    }
+
+    return nextItems
+  }
+
+  const relatedIntel = getNextThreeItems(mockIntelUpdates, currentId)
 
   return (
     <Card
@@ -46,7 +64,7 @@ export const RelatedIntel = () => {
             }
           >
             <Row gutter={12}>
-              <Col span={10}>
+              <Col span={24} sm={12} lg={24} xl={12}>
                 <Image
                   src={
                     "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=400&h=300&fit=crop"
@@ -56,7 +74,7 @@ export const RelatedIntel = () => {
                   className="object-cover rounded-xl"
                 />
               </Col>
-              <Col span={14}>
+              <Col span={24} sm={12} lg={24} xl={12}>
                 <Text className="text-[#2C63CD]! text-[13px]!">
                   Company name
                 </Text>

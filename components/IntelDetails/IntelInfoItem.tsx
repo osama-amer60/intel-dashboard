@@ -96,7 +96,7 @@ const IntelInfo = ({
             rel="noopener noreferrer"
             className="flex items-center gap-1 me-4"
           >
-            {source} <SquareArrowOutUpRight size={14} />
+            {source}
           </a>
         )}
       </Col>
