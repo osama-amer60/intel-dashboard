@@ -5,6 +5,9 @@ export const theme: ThemeConfig = {
     Breadcrumb: {
       itemColor: "#FFF",
       lastItemColor: "rgba(255, 255, 255, 0.55)",
+      linkHoverColor: "rgba(255, 255, 255, 0.55)",
+      linkColor: "rgba(255, 255, 255, 0.55)",
+      colorBgTextHover: "transparent",
       separatorColor: "#FFF",
     },
     Input: {

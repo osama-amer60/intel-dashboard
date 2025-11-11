@@ -27,9 +27,11 @@ export default function AppLayout({ children }: { children: ReactNode }) {
             items={[
               {
                 title: "Home",
+                href: "/",
               },
               {
                 title: "Intel Updates",
+                href: "/",
               },
             ]}
           />
