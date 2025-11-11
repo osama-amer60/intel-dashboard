@@ -4,15 +4,59 @@ import { DataStateCard } from "@/components/common/DataStateCard"
 import { IntelImage } from "@/components/IntelDetails/IntelImage"
 import IntelInfo from "@/components/IntelDetails/IntelInfoItem"
 import { RelatedIntel } from "@/components/IntelDetails/RelatedIntel"
+import { useHeader } from "@/components/layout/HeaderContext"
 import { useIntelDetails } from "@/hooks/useIntelDetails"
-import { Col, Row, Space, Typography } from "antd"
+import { Breadcrumb, Button, Col, Row, Space, Typography } from "antd"
+import { FileText } from "lucide-react"
 import { useParams } from "next/navigation"
+import { useEffect } from "react"
 
 const { Title, Text, Paragraph } = Typography
 
 const IntelDetails = () => {
   const { id } = useParams<{ id: string }>()
   const { data, isLoading, isError } = useIntelDetails(id)
+  const { setHeader, setHeaderActions } = useHeader()
+
+  useEffect(() => {
+    setHeader(
+      <div>
+        <div className="text-xl font-bold mb-1">{data?.data?.title}</div>
+        <Breadcrumb
+          items={[
+            {
+              title: "Home",
+              href: "/",
+            },
+            {
+              title: "Intel Updates",
+              href: "/",
+            },
+            {
+              title: data?.data?.title,
+            },
+          ]}
+        />
+      </div>
+    )
+
+    setHeaderActions(
+      <Button
+        type="primary"
+        icon={<FileText size={16} />}
+        onClick={() => {
+          console.log("exported")
+        }}
+      >
+        Export PDF
+      </Button>
+    )
+
+    return () => {
+      setHeader(null)
+      setHeaderActions(null)
+    }
+  }, [data?.data, setHeader, setHeaderActions])
 
   if (isLoading || isError) {
     return (

@@ -6,7 +6,7 @@ export const theme: ThemeConfig = {
       itemColor: "#FFF",
       lastItemColor: "rgba(255, 255, 255, 0.55)",
       linkHoverColor: "rgba(255, 255, 255, 0.55)",
-      linkColor: "rgba(255, 255, 255, 0.55)",
+      linkColor: "#FFF",
       colorBgTextHover: "transparent",
       separatorColor: "#FFF",
     },
