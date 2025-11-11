@@ -7,7 +7,7 @@ const { useBreakpoint } = Grid
 
 const { Header, Content } = Layout
 
-export default function AppLayout({ children }: { children: ReactNode }) {
+export default function AppClientLayout({ children }: { children: ReactNode }) {
   const screens = useBreakpoint()
   const isMobile = !screens.lg
 
