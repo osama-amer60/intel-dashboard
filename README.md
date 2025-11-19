@@ -7,6 +7,7 @@ An interactive analytics dashboard built with Next.js App Router for exploring â
 - Interactive dashboard with filtering by sector and country
 - Intel list and detail pages with related items
 - Charts for sector distribution and country progress
+- Route-specific layouts for dashboard and detail pages with dedicated headers
 - Serverless API routes under `app/api/*`
 - Type-safe development with TypeScript (strict mode)
 - Data fetching/cache with @tanstack/react-query
@@ -40,7 +41,9 @@ components/
   charts/                       # Sector and country charts
   dashboard/                    # Filters, stats, list
   IntelDetails/                 # Details view components
-  layout/                       # Application layout pieces
+  layout/
+    IntelUpdatesLayout.tsx      # Dashboard shell + default intel header
+    IntelDetailsLayout.tsx      # Detail shell + breadcrumbs/actions
   common/                       # Reusable UI bits (cards, states)
 data/
   mockIntel.ts                  # Mock dataset used by API routes
@@ -127,7 +130,7 @@ Strict TypeScript is enabled. You can import from project root via the `@/*` pat
 
 ### React Query
 
-React Query global providers live in `app/providers/AppProviders.tsx`. Use its context for data fetching and caching patterns across the app.
+React Query global providers live in `app/providers/AppProviders.tsx`, which also wraps the app with Ant Design's theme/context and applies the base dashboard background. Use its context for data fetching and caching patterns across the app.
 
 ### Charts
 
@@ -138,6 +141,8 @@ Charts are implemented with `react-chartjs-2` in `components/charts`. If you add
 ESLint is configured with Next.js Core Web Vitals and TypeScript rules (`eslint.config.mjs`). Run `npm run lint` before committing.
 
 ### Deployment
+
+Live demo: https://intel-dashboard-zeta.vercel.app/
 
 The app targets Node.js and deploys well on platforms like Vercel. Typical flow:
 

@@ -1,7 +1,5 @@
 "use client"
 
-import AppClientLayout from "@/components/layout/AppClientLayout"
-import { HeaderProvider } from "@/components/layout/HeaderContext"
 import { theme } from "@/theme/antdTheme"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { App, ConfigProvider } from "antd"
@@ -22,9 +20,9 @@ export default function AppProviders({ children }: { children: ReactNode }) {
     <QueryClientProvider client={queryClient}>
       <ConfigProvider theme={theme}>
         <App>
-          <HeaderProvider>
-            <AppClientLayout>{children}</AppClientLayout>
-          </HeaderProvider>
+          <div className="min-h-screen" style={{ backgroundColor: "#0A1733" }}>
+            {children}
+          </div>
         </App>
       </ConfigProvider>
     </QueryClientProvider>
