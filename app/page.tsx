@@ -2,6 +2,7 @@
 
 import CountryProgressList from "@/components/charts/CountryProgressList"
 import SectorChart from "@/components/charts/SectorChart"
+import InstallPWA from "@/components/common/InstallPWA"
 import IntelFilter from "@/components/dashboard/IntelFilter"
 import { IntelList } from "@/components/dashboard/IntelList"
 import StatsCard from "@/components/dashboard/StatsCard"
@@ -56,6 +57,7 @@ export default function Home() {
           </Col>
         </Row>
       </div>
+      <InstallPWA />
     </IntelUpdatesLayout>
   )
 }
