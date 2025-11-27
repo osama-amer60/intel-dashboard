@@ -12,7 +12,25 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Intel Dashboard",
-  description: "Modern analytics dashboard built with Next.js and Ant Design",
+  description:
+    "Interactive analytics dashboard for exploring intel items by sectors and countries",
+  manifest: "/manifest.json",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "Intel Dashboard",
+  },
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/icons/apple-touch-icon.png",
+  },
+}
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  themeColor: "#1890ff",
 }
 
 export default function RootLayout({
